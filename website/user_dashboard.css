@@ -1,0 +1,164 @@
+body{
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: #071630;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-bottom: 40px;
+    margin-top: 0px;
+    text-align: center;
+    background-size: cover;
+}
+h1{
+    color: lightblue;
+    position: absolute;
+    margin-top: -150px;
+    margin-left: -600px;
+}
+
+.doors {
+    position: absolute;
+    margin-top: -430px;
+    margin-left: 110px;
+    color: white;
+}
+
+.ac_{
+    position: absolute;
+    margin-top: 30px;
+    margin-left: -202px;
+    color: white;
+}
+
+.stop_{
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 3px;
+    color: white;
+}
+
+.key_{
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 240px;
+    color: white;
+}
+.gps_{
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 445px;
+    color: white;
+}
+
+.content {
+    text-align: center;
+}
+.car{
+    margin-top: -120px;
+    width: 240px;
+    height: 400px;
+}
+.ac{
+    width: 50px;
+    height: 50px;
+    position:absolute;
+    margin-top: 360px;
+    margin-left: -460px;
+}
+.stop{
+    width: 140px;
+    height: 140px;
+    position:absolute;
+    margin-top: 315px;
+    margin-left: -270px;
+}
+.key{
+    width: 70px;
+    height: 70px;
+    position:absolute;
+    margin-top: 350px;
+    margin-left: -10px;
+}
+.gps{
+    width: 60px;
+    height: 60px;
+    position:absolute;
+    margin-top: 360px;
+    margin-left: 210px;
+}
+.button[value="door_open"],
+.button[value="ac_on"],
+.button[value="key_start"] {
+    background-color: green;
+}
+.button[value="door_close"],
+.button[value="ac_off"],
+.button[value="stop"],
+.button[value="key_stop"] {
+    background-color: red;
+}
+
+.button[value="door_close"]{
+    position: absolute;
+    margin-top: 240px;
+    margin-left: -180px;
+}
+
+.button[value="door_open"]{
+    position: absolute;
+    margin-top: 240px;
+    margin-left: -50px;
+}
+
+.button[value="ac_on"]{
+    position: absolute;
+    margin-top: 430px;
+    margin-left: -400px;
+}
+
+.button[value="ac_off"]{
+    position: absolute;
+    margin-top: 430px;
+    margin-left: -490px;
+}
+
+.button[value="stop"]{
+    position: absolute;
+    margin-top: 430px;
+    margin-left: -205px;
+}
+
+.button[value="key_start"]{
+    position: absolute;
+    margin-top: 430px;
+    margin-left: 60px;
+}
+
+.button[value="key_stop"]{
+    position: absolute;
+    margin-top: 430px;
+    margin-left: -30px;
+}
+
+.button {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.button:checked {
+    outline: 2px solid black;
+}
+
+.time-display {
+    position: absolute;
+    margin-top: 65px;
+    margin-left: 430px;
+    color: white;
+    font-size: -600px;
+}

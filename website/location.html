@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS Location on Map</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ol3/4.6.5/ol.css" type="text/css">
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+
+        #coordinates{
+            margin-top: 20px;
+            color: white;
+
+        }
+
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            background-color: #071630;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ol3/4.6.5/ol.js"></script>
+</head>
+<body>
+    <h3>GPS Location</h3>
+    <div id="map"></div>
+    <div id="coordinates"></div>
+    <script>
+        var map = new ol.Map({
+            target: 'map',
+            layers: [
+                new ol.layer.Tile({
+                    source: new ol.source.OSM()
+                })
+            ],
+            view: new ol.View({
+                center: ol.proj.fromLonLat([0, 0]),
+                zoom: 5
+            })
+        });
+
+        var marker = new ol.Feature({
+            geometry: new ol.geom.Point(ol.proj.fromLonLat([0, 0]))
+        });
+
+        var vectorSource = new ol.source.Vector({
+            features: [marker]
+        });
+
+        var markerVectorLayer = new ol.layer.Vector({
+            source: vectorSource,
+        });
+
+        map.addLayer(markerVectorLayer);
+
+        function updateMap() {
+            fetch('https://api.thingspeak.com/channels/2585769/feeds.json?results=1')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.feeds.length > 0) {
+                        var latestData = data.feeds[0];
+                        var lat = parseFloat(latestData.field6);
+                        var lon = parseFloat(latestData.field7);
+                        var country_name = latestData.field8;
+
+                        var newPosition = ol.proj.fromLonLat([lon, lat]);
+                        map.getView().setCenter(newPosition);
+                        marker.setGeometry(new ol.geom.Point(newPosition));
+
+                        document.getElementById('coordinates').innerHTML = `Latitude: ${lat}, Longitude: ${lon}, Country Name: ${country_name}`;
+                    }
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        setInterval(updateMap, 1000);
+        updateMap();
+    </script>
+</body>
+</html>
